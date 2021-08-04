@@ -39,3 +39,4 @@ foreach ($masyvasm as $key=>$value){
 }
 echo '<pre>';
 print_r($masyvasm);
+
