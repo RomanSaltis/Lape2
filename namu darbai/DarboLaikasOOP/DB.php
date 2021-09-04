@@ -20,22 +20,31 @@ function find($id){
 }
 function allOOP(){
     $conn = connect();
-    $sql = "SELECT `ziniarastis`.`id`, `name`, `company`,
-        (SELECT COUNT(*)
-        FROM `darbuotojas`
-        WHERE `darbuotojas`.`darbuotojo_id` = `ziniarastis`.`id`) as 'total'
-        FROM `darbuotojas` right join `ziniarastis`
-        ON `ziniarastis`.`id` = `darbuotojas`.`darbuotojo_id`
-        GROUP by `ziniarastis`.`id`;";
+    $sql = "SELECT * FROM `ziniarastis`";
+    // $sql = "SELECT `ziniarastis`.`id`, `name`, `company`,
+    //     (SELECT COUNT(*)
+    //     FROM `darbuotojas`
+    //     WHERE `darbuotojas`.`darbuotojo_id` = `ziniarastis`.`id`) 
+    //     FROM `darbuotojas` right join `ziniarastis`
+    //     ON `ziniarastis`.`id` = `darbuotojas`.`darbuotojo_id`
+    //     GROUP by `ziniarastis`.`id`;";
     $result = $conn->query($sql);
 
     $arr = [];
     while($row = $result->fetch_assoc()) {
         $nezinomas = new Ziniarastis();
+        $sql = "SELECT `hours`
+        FROM `darbuotojas`
+        WHERE `darbuotojo_id` =". $row['id'];
+        $hours = $conn->query($sql);
+        $totalhours = 0;
+        while($hoursrow = $hours->fetch_assoc()) {
+            $totalhours += $hoursrow['hours'];    
+        }
         $nezinomas->id = $row['id'];
         $nezinomas->name = $row['name'];
         $nezinomas->company = $row['company'];
-        $nezinomas->total = $row['total'];
+        $nezinomas->total = $totalhours;
         $arr[] = $nezinomas;
     }
     $conn->close();
@@ -54,7 +63,7 @@ function all(){
     $sql = "SELECT `ziniarastis`.`id`, `name`, `company`,
     (SELECT COUNT(*)
     FROM `darbuotojas`
-    WHERE `darbuotojas`.`darbuotojo_id` = `ziniarastis`.`id`) as 'total'
+    WHERE `darbuotojas`.`darbuotojo_id` = `ziniarastis`.`id`) 
     FROM `darbuotojas` right join `ziniarastis`
     ON `ziniarastis`.`id` = `darbuotojas`.`darbuotojo_id`
     GROUP by `ziniarastis`.`id`;";

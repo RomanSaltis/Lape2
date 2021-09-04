@@ -8,13 +8,13 @@ include('../DB.php');
 
 
 
-    if(isset($_POST['create'] )){
+    if(isset($_POST['create'] ) && $_POST['company'] != '' && $_POST['name'] != ''){
         store();
         header("location:./");
         die;
     }
 
-    if(isset($_POST['update'] )){
+    if(isset($_POST['update'] )&& $_POST['company'] != '' && $_POST['name'] != ''){
         update();
         header("location:./");
         die;

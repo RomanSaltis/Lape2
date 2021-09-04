@@ -46,6 +46,7 @@ function all(){
         }
         $nezinomas->month = $row['month'];
         $nezinomas->hours = $row['hours'];
+        // $nezinomas->hours = $row['darbuotojo_id'];
         $arr[] = $nezinomas;
     }
 
@@ -55,8 +56,8 @@ function all(){
 function store(){
     $conn = connect();
 
-    $sql = "INSERT INTO `darbuotojas` (`id`, `month`, `hours`, `darbuotojo_id`) 
-            VALUES (NULL, '".$_POST['month']."',  '".$_POST['hours']."',  '".$_POST['darbuotojo_id']."');";
+    $sql = "INSERT INTO `darbuotojas` (`month`, `hours`, `darbuotojo_id`) 
+            VALUES ( '".$_POST['month']."',  '".$_POST['hours']."',  '".$_POST['darbuotojo_id']."');";
   
 //   echo $sql;die;
     $conn->query($sql);

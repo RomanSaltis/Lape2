@@ -8,13 +8,13 @@ include('../unikalusDarbuotojas.php');
 
 
 
-    if(isset($_POST['create'] )){
+    if(isset($_POST['create'] )&& $_POST['month'] != '' && $_POST['hours'] != ''){
         store();
         header("location:./darbuotojas.php?darbuotojo_id=".$_POST['darbuotojo_id']);
         die;
     }
 
-    if(isset($_POST['update'] )){
+    if(isset($_POST['update'] )&& $_POST['month'] != '' && $_POST['hours'] != ''){
         update();
         header("location:./darbuotojas.php?darbuotojo_id=".$_POST['darbuotojo_id']);
         die;

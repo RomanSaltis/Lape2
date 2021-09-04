@@ -6,6 +6,7 @@
  public $id;
  public $name;
  public $company;
+ public $total;
 
  
 
