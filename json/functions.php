@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 init();
 
@@ -56,4 +56,4 @@ function update(){
     }
 }
 
-?>
+?> -->
