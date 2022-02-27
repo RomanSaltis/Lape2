@@ -29,7 +29,6 @@ $data = array(
 
 function rock_table($data)
 {
-
     $new_line        = "\n";
     $columns_headers = columns_headers($data);
     $columns_lengths = columns_lengths($data, $columns_headers);
