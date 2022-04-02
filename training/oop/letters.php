@@ -8,6 +8,7 @@ class Letters{
 
     function __construct($fLetter = "", $sLetter = "")
     {
+        echo "constructor attack ".PHP_EOL;
         $this->firstLetter = $fLetter;
         $this->secondLetter = $sLetter;
     }
@@ -24,19 +25,25 @@ class Letters{
     {
         $this->firstLetter = $character;
     }
+    public function getAll(){
+        echo "getAll ".$this->getFirst()." and ". $this->getSecond();
+    }
 
 }
 
 $show = new Letters("D", "G");
-echo $show->getFirst();
-echo $show->getSecond();
-
-// $show->setFirst('A');
-// echo $show->firstLetter. "\n";
+echo $show->getAll(). PHP_EOL;
 // echo $show->getFirst();
-// echo $show->getFirst(). "\n";
-// echo $show->getSecond(). "\n";
-// echo Letters::LETTERS. "\n";
-// echo $show::LETTERS;
+// echo $show->getSecond();
+
+class MyLetters extends Letters
+{
+
+}
+
+$myletters = new MyLetters("V", "P");
+echo " extendet class ".$myletters->getAll();
+
+
 
 ?>

@@ -3,9 +3,9 @@
 class Auto
 {
     const WHEELS = 4;
-    public $brand;
-    public $model;
-    public $color;
+    protected $brand;
+    protected $model;
+    protected $color;
 
     function __construct($tBrand = "", $tModel = "", $tColor = "")
     {
@@ -27,12 +27,42 @@ class Auto
     {
         $this->brand = $tempBrand;
     } 
-    public function getCarName()
+    protected function getCarName()
     {
         echo "Auto->getCarName()". PHP_EOL;
         return $this->brand." ". $this->model." ".$this->color. PHP_EOL;
     }
 
 }
+
+class Owner extends Auto
+{
+    public static $bestCar = "2020";
+    protected $ownerName = "Racer";
+
+    public function getOwnerName()
+    {
+        return $this->ownerName. PHP_EOL;
+    }   
+
+    public function getAutoAndOwner()
+    {
+        return "Owner is ".$this->getOwnerName()." and his car is ". $this->getCarName();
+    }
+    public static function getBestCarDate()
+    {
+        return self::$bestCar;
+    }
+}
+
+echo Owner::$bestCar."\n";
+echo Owner::getBestCarDate();
+
+
+
+
+
+
+
 
 ?>
